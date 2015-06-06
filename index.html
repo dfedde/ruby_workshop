@@ -40,9 +40,10 @@
 
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
-        <section>
-          <image style="border:none;" src="http://compsci.ca/blog/wp-content/uploads/2007/04/ruby_logo.gif">
-          <p>
+        <section data-background="http://th04.deviantart.net/fs71/PRE/f/2014/118/e/5/ruby_wallpaper_by_tylerkern-d7gd6z3.png" >
+          <p style=" position: absolute;
+              left: 200px;
+                  top: 500px;">
           <small>Created by <a href="http://duncan.fedde.us">Duncan Fedde</a> / <a href="http://twitter.com/dfedde">@dfedde</a></small>
           </p>
           <aside class="notes">
@@ -84,10 +85,18 @@
         </section>
 
         <section>
+          <h2>10.0.100.231:8000</h2>
+        </section>
+
+        <section>
           <h3>Give me a number from 1-5 for... </h3>
           <aside class="notes">
             ask for comfort levels 1-5
           </aside>
+        </section>
+
+        <section>
+          <h3 >programing</h3>
         </section>
 
         <section>
@@ -158,8 +167,9 @@
           <section >
             ssh into:
             <pre ><code  data-trim contenteditable>
-             $ ssh ruby@ask.duncan.io
+             $ ssh ruby@10.0.100.231
             </code></pre>
+            password sfsrocks
             and follow the on screen instructions
           </section>
 
@@ -174,8 +184,8 @@
             set your preferred editor(vim/emacs/nano installed)
             <pre ><code data-trim contenteditable>
              $ export EDITOR=your_preferred_editor
-             # sorry my docker build is bad you will have to do this as well 
-             $ export PATH=/usr/bin/bunlder/bin:$PATH
+             # sorry my docker build is bad you will have to do this as well
+             $ export PATH=/usr/local/bundle/bin:$PATH
             </code></pre>
           </section>
 
@@ -489,6 +499,7 @@ end
 > puts "yep" if false
 > puts "yep" if nil
 > puts "yep" if 0
+> puts "yep" if ""
               </code></pre>
            </section>
          </section>
@@ -515,7 +526,7 @@ end
             </code></pre>
           </section>
           <section>
-            woops I for got a method
+            woops I forgot a method
           </section>
          <section>
            thats fine just reopen the class
@@ -538,6 +549,40 @@ end
          </section>
        </section>
 
+        <section >
+          <!-- TODO: perhaps I need a features section -->
+          <h3 style="position: relative;">running ruby files</h3>
+          <section >
+          </section>
+          <section>
+            <pre ><code class="bash"  data-trim contenteditable>
+$ vim ruby_script.rb
+            </code></pre>
+            <pre ><code class="ruby"  data-trim contenteditable>
+puts "I'm in a file"
+            </code></pre>
+            <pre ><code class="bash"  data-trim contenteditable>
+$ ruby ruby_script.rb
+            </code></pre>
+          </section>
+          <section>
+          </section>
+         <section>
+           or with a shabang
+            <pre ><code class="bash"  data-trim contenteditable>
+$ vim ruby_script
+            </code></pre>
+            <pre ><code class="ruby"  data-trim contenteditable>
+#!/bin/bash
+puts "I'm run with a shabang"
+            </code></pre>
+            <pre ><code class="bash"  data-trim contenteditable>
+$ chomd +x ruby_script.rb
+$ ./ruby_script
+            </code></pre>
+         </section>
+       </section>
+
          <section>
           now for the fun stuff
          </section>
@@ -545,6 +590,10 @@ end
         <section >
           <h3 style="position: relative;">make a guess the number game</h3>
           <section >
+            <pre ><code class="bash"  data-trim contenteditable>
+$ mkdir guess_the_number
+$ cd guess_the_number
+           </code></pre>
           </section>
           <section>
             <pre ><code class="ruby"  data-trim contenteditable>
@@ -565,24 +614,62 @@ def guess_the_num
   end
   puts "you lose"
 end
+
+guess_the_num
            </code></pre>
           </section>
           <section >
             now make it so that you can set the range and the number of guesses
+          </section>
+          <section >
+            <pre ><code class="ruby"  data-trim contenteditable>
+def guess_the_num(range: 50, guesses: 5)
+  num = rand(range)
+
+  guesses.times do
+    print "make a guess: "
+    guess = gets.chomp.to_i
+    if num == guess
+      puts "you win"
+      return
+    elsif num > guess
+      puts "your guess was to low"
+    elsif num < guess
+      puts "your guess was to high"
+    end
+  end
+  puts "you lose"
+end
+
+if __FILE__ == $0
+  range = ARGV.shift.to_i if 
+  guesses = ARGV.shift.to_i if 
+
+  range = range.to_i if range
+  guesses = guesses.to_i if 
+
+  guess_the_num range: range, guesses: guesses
+end
+           </code></pre>
           </section>
          </section>
 
          <section >
           <h3 style="position: relative;">reimplemented each</h3>
           <section >
+            <pre ><code class="bash"  data-trim contenteditable>
+$ cd ..
+$ mkdir reimplement each
+$ cd guess_the_number
+           </code></pre>
           </section>
           <section>
             <pre ><code class="ruby"  data-trim contenteditable>
-> class Array
+class Array
   def my_each
    i = 0
    until i = size
-     yeild self[i]
+     yield self[i]
      i += 1
    end
    self
@@ -591,26 +678,114 @@ end
             </code></pre>
           </section>
           <section >
-            make you each also present the index to the block
+            make your each also present the index to the block
+          </section>
+          <section>
+            <pre ><code class="ruby"  data-trim contenteditable>
+class Array
+  def my_each
+   i = 0
+   until i = size
+     yield self[i], i
+     i += 1
+   end
+   self
+  end
+end
+            </code></pre>
           </section>
          </section>
-			</div>
-		</div>
+        <section >
+          <h3 style="position: relative;">Conway's game of life</h3>
+          <section >
+            <pre ><code class="bash"  data-trim contenteditable>
+$ cd ..
+$ mkdir game_of_life
+$ cd guess_the_number
+         </code></pre>
+        </section>
+        <section>
+          <pre ><code class="ruby"  data-trim contenteditable>
+class Cell
+  attr_writer :neighbors
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.js"></script>
+  def initialize(seed_probability)
+    @alive = seed_probability > rand
+  end
 
-		<script>
+  def next!
+    @alive = @alive ? (2..3) === @neighbors : 3 == @neighbors
+  end
 
-			// Full list of configuration options available at:
-			// https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				controls: true,
-				progress: true,
-				history: true,
-				center: true,
+  def to_i
+    @alive ? 1 : 0
+  end
 
-				transition: 'slide', // none/fade/slide/convex/concave/zoom
+  def to_s
+    @alive ? 'o' : ' '
+  end
+end
+
+class Game
+
+  def initialize(width, height, seed_probability, steps)
+    @width, @height, @steps = width, height, steps
+    @cells = Array.new(height) {
+    Array.new(width) { Cell.new(seed_probability) } }
+  end
+
+  def play!
+    (1..@steps).each do
+      next!
+      system('clear')
+      puts self
+    end
+  end
+
+  def next!
+    @cells.each_with_index do |row, y|
+      row.each_with_index do |cell, x|
+        cell.neighbors = alive_neighbours(y, x)
+      end
+    end
+    @cells.each { |row| row.each { |cell| cell.next! } }
+  end
+
+  def alive_neighbours(y, x)
+    [[-1, 0], [1, 0], # sides
+    [-1, 1], [0, 1], [1, 1], # over
+    [-1, -1], [0, -1], [1, -1] # under
+    ].inject(0) do |sum, pos|
+      sum + @cells[(y + pos[0]) % @height][(x + pos[1]) % @width].to_i
+    end
+  end
+
+  def to_s
+    @cells.map { |row| row.join }.join("\n")
+  end
+end
+
+Game.new(100, 50, 0.1, 100).play!
+</code></pre>
+</section>
+</section>
+</div>
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+
+<script>
+
+// Full list of configuration options available at:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+controls: true,
+progress: true,
+history: true,
+center: true,
+
+transition: 'slide', // none/fade/slide/convex/concave/zoom
 
 				// Optional reveal.js plugins
 				dependencies: [
