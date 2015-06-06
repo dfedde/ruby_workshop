@@ -1,0 +1,629 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Ruby work shop</title>
+
+		<meta name="description" content="Ruby work shop">
+		<meta name="author" content="Duncan">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/blood.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+        <section>
+          <image style="border:none;" src="http://compsci.ca/blog/wp-content/uploads/2007/04/ruby_logo.gif">
+          <p>
+          <small>Created by <a href="http://duncan.fedde.us">Duncan Fedde</a> / <a href="http://twitter.com/dfedde">@dfedde</a></small>
+          </p>
+          <aside class="notes">
+            talk about ruby show basic concepts
+            run thought exersizes and help out and teach as nessasry
+          </aside>
+        </section>
+
+        <section>
+          <h3 class="fragment">my name is <a href="http://duncan.fedde.us"                >Duncan Fedde</a></h3>
+          <h3 class="fragment">I live in <a  href="http://www.centennialco.gov/"          >Centennial, CO</a></h3>
+          <h3 class="fragment">I Do <a       href="https://www.ruby-lang.org/en/"         >Development/operations</a></h3>
+          <h3 class="fragment">I Work <a   href="http://pivotal.io/"                      >@Pivotal</a></h3>
+          <h3 class="fragment">I tweet <a  href="https://twitter.com/dfedde?lang=en"      >@dfedde</a></h3>
+          <h3 class="fragment">I chat on <a  href="irc://irc.freenode.net/sofreeus"       >freenode/#sofreeus</a></h3>
+        </section>
+
+        <section>
+          <h2>What will we be doing Today?</h2>
+          <ul>
+            <li class="fragment">set stuff up</li>
+            <li class="fragment">learn some ruby syntax</li>
+            <li class="fragment">work though some challenges</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Yes... but how?</h2>
+          <pre class="fragment"><code data-trim contenteditable>
+10 I'll run a lab
+20 You will pair up and try the lab on your own
+30 we'll come back and discus the lab
+40 GOTO 10
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>but first</h2>
+        </section>
+
+        <section>
+          <h3>Give me a number from 1-5 for... </h3>
+          <aside class="notes">
+            ask for comfort levels 1-5
+          </aside>
+        </section>
+
+        <section>
+          <h3 >Ruby </h3>
+        </section>
+
+        <section>
+          <h3 >Java </h3>
+        </section>
+
+        <section>
+          <h3 >Python </h3>
+        </section>
+
+        <section>
+          <h3 >Perl </h3>
+        </section>
+
+        <section>
+          <h3 >Go </h3>
+        </section>
+
+        <section>
+          <h3 >C/C++ </h3>
+        </section>
+
+        <section>
+          <h3 >PHP </h3>
+        </section>
+
+        <section>
+          <h3 >Haskell </h3>
+        </section>
+
+        <section>
+          <h3 >Scala </h3>
+        </section>
+
+        <section>
+          <h3 >Brain Fuck </h3>
+        </section>
+
+        <section >
+          <h3 style="position: relative;">How to read this presentation</h3>
+
+          <section >
+          </section>
+
+          <section >
+              This will be used for terminal commands
+            <pre ><code  data-trim contenteditable>
+             $
+            </code></pre>
+              This will be used for pry commands
+            <pre><code data-trim contenteditable>
+             >
+            </code></pre>
+          </section>
+        </section>
+
+        <section >
+          <h3 style="position: relative;">Setup</h3>
+
+          <section >
+            get ruby up and running
+          </section>
+
+          <section >
+            ssh into:
+            <pre ><code  data-trim contenteditable>
+             $ ssh ruby@ask.duncan.io
+            </code></pre>
+            and follow the on screen instructions
+          </section>
+
+          <section >
+            install your first gem
+            <pre ><code data-trim contenteditable>
+             $ gem install pry
+            </code></pre>
+          </section>
+
+          <section >
+            set your preferred editor(vim/emacs/nano installed)
+            <pre ><code data-trim contenteditable>
+             $ export EDITOR=your_preferred_editor
+             # sorry my docker build is bad you will have to do this as well 
+             $ export PATH=/usr/bin/bunlder/bin:$PATH
+            </code></pre>
+          </section>
+
+          <section >
+            cd into exercise one
+          </section>
+
+        </section>
+
+
+        <section >
+          <h3 style="position: relative;">A REPL With a Cause </h3>
+
+          <section >
+            <small>PRY</small>
+          </section>
+
+          <section >
+            first thing fist lets play with ruby
+            In your terminal type:
+            <pre ><code data-trim contenteditable>
+             $ pry
+            </code></pre>
+            you should see somthing like this
+            <pre><code data-trim contenteditable>
+             [0] pry(main)>
+            </code></pre>
+          </section>
+
+          <section >
+            to exit pry
+            <pre><code data-trim contenteditable>
+             > exit
+            </code></pre>
+            or
+            <pre><code data-trim contenteditable>
+             C-d
+            </code></pre>
+
+          </section>
+
+        </section>
+
+        <section >
+          <h3 style="position: relative;">A Poem</h3>
+          <section >
+            Let's write a poem to test our printer
+          </section>
+
+          <section >
+            <pre ><code class="ruby"  data-trim contenteditable>
+> edit
+puts "If a packet hits a pocket on a socket on a port,
+And the bus is interrupted as a very last resort.
+And the address of the memory makes your floppy disk abort,
+Then the socket packet pocket has an error to report!"
+            </code></pre>
+            <small>poem by: <a href="http://www.dennydavis.net/poemfiles/cppoem.htm">Denny Davis</a></small>
+          </section>
+          </section>
+
+        </section>
+
+        <section >
+          <h3 style="position: relative;">lets turn that expensive computer into a $1 calculator</h3>
+          <section >
+            AKA Math
+          </section>
+
+          <section >
+            Addition
+            <pre ><code class="ruby"  data-trim contenteditable>
+> 10 + 6
+            </code></pre>
+          </section>
+
+          <section >
+            Subtraction
+            <pre ><code class="ruby"  data-trim contenteditable>
+> 10 - 6
+            </code></pre>
+          </section>
+
+          <section >
+            Multiplication
+            <pre ><code class="ruby"  data-trim contenteditable>
+> 2 * 3
+            </code></pre>
+          </section>
+
+          <section >
+            Division
+            <pre ><code class="ruby"  data-trim contenteditable>
+> 10_000_000 / 2
+            </code></pre>
+          </section>
+
+        <section >
+            Modulus
+            <pre ><code class="ruby"  data-trim contenteditable>
+> 1_0 % 2
+            </code></pre>
+          </section>
+
+        </section>
+
+       </section>
+
+        <section >
+          <h3 style="position: relative;">calling a method on a object</h3>
+          <section >
+            but I heard that everything is an object in ruby
+          </section>
+          <section>
+            <pre ><code class="ruby"  data-trim contenteditable>
+> 10.even?
+            </code></pre>
+          </section>
+          <section>
+            <pre ><code class="ruby"  data-trim contenteditable>
+> "The Internet is for catz".length
+            </code></pre>
+          </section>
+
+          <section>
+            or even
+            <pre ><code class="ruby"  data-trim contenteditable>
+> 10.methods
+            </code></pre>
+          </section>
+          wait whats + doing there
+          <section>
+            <pre ><code class="ruby"  data-trim contenteditable>
+> 10 + 5 #is the same as
+> 10.+(5)
+            </code></pre>
+          </section>
+       </section>
+
+
+        <section >
+          <h3 style="position: relative;">I was good at math till they added letters</h3>
+          <section >
+            AKA variables
+          </section>
+
+          <section >
+            assignment
+            <pre ><code class="ruby"  data-trim contenteditable>
+> fnord = "that funny feeling when you" +
+          "reach out for a Snickers bar and" +
+          "come back holding a Slurpee"
+            </code></pre>
+          </section>
+
+          <section >
+            retrieval
+            <pre ><code class="ruby"  data-trim contenteditable>
+> fnord
+            </code></pre>
+          </section>
+
+          <section >
+            calling methods on variables work the same as there literal counterparts
+            <pre ><code class="ruby"  data-trim contenteditable>
+> fnord.length
+> fnord.upcase
+            </code></pre>
+          </section>
+
+          <section >
+            methods can have arguments
+            <pre ><code class="ruby"  data-trim contenteditable>
+> fnord.split( "for" )
+> fnord.split "for"  # parentheses are optional
+            </code></pre>
+          </section>
+
+        </section>
+       </section>
+
+
+        <section >
+          <!-- TODO: perhaps I need a features section -->
+          <h3 style="position: relative;">iterators and blocks</h3>
+          <section >
+          </section>
+          <section>
+            we could do something 5 times like this
+            <pre ><code class="ruby"  data-trim contenteditable>
+for i in 1..5
+  puts "My current favorite number is #{i}"
+end
+            </code></pre>
+          </section>
+          <section >
+            but that kinda sux and is not the ruby way
+          </section>
+          <section>
+            we could do this
+            <pre ><code class="ruby"  data-trim contenteditable>
+(1..5).each do |i|
+  puts "My current favorite number is #{i}"
+end
+            </code></pre>
+          </section>
+
+          <section>
+            or even this
+            <pre ><code class="ruby"  data-trim contenteditable>
+5.times do |i|
+  puts "My current favorite number is #{1 + i}"
+end
+            </code></pre>
+          </section>
+
+          <section>
+            this works on all things that are itaratable
+            <pre ><code class="ruby"  data-trim contenteditable>
+[10, "man", :cat []].each do |i|
+  puts "My current favorite thing is #{i}"
+end
+            </code></pre>
+          </section>
+       </section>
+
+        <section >
+          <!-- TODO: perhaps I need a features section -->
+          <h3 style="position: relative;">arrays and hashes</h3>
+          <section >
+          </section>
+          <section>
+            arrays can contain a mixed set of any objects
+            <pre ><code class="ruby"  data-trim contenteditable>
+> array = ["cat", :dog, 30]
+> array[1]
+> array[2]
+> array[3]
+            </code></pre>
+          </section>
+          <section>
+            hashes are key value pairs where any object can be the key for any other object
+            <pre ><code class="ruby"  data-trim contenteditable>
+> hash = { "cat" => :are_cool, true => "that was true", [1,2] => "a value for an array that is [1,2]"}
+> hash["cat"]
+> hash[1==1]
+> hash[[4-3, 1*2]]
+            </code></pre>
+          </section>
+       </section>
+        <section >
+          <!-- TODO: perhaps I need a features section -->
+          <h3 style="position: relative;">defining methods</h3>
+          <section >
+          </section>
+          <section>
+            arrays can contain a mixed set of any objects
+            <pre ><code class="ruby"  data-trim contenteditable>
+> def print_with_format(printable) # parentheses are optional here to
+    puts "\"#{printable}\" said the squid tying to sound like a cat"
+  end
+> print_with_format "I can haz Fish"
+            </code></pre>
+          </section>
+       </section>
+
+        <section >
+          <!-- TODO: perhaps I need a features section -->
+          <h3 style="position: relative;">conditionals</h3>
+          <section >
+          </section>
+          <section>
+            arrays can contain a mixed set of any objects
+            <pre ><code class="ruby"  data-trim contenteditable>
+> def water_status(minutes)
+  if minutes < 7
+    puts "The water is not boiling yet."
+  elsif minutes == 7
+    puts "It's just barely boiling"
+  elsif minutes >= 8
+    puts "It's boiling!"
+  end
+end
+> water_status  3
+> water_status  7
+> water_status  8
+> water_status  9
+            </code></pre>
+          </section>
+           <section>
+              <pre ><code class="ruby"  data-trim contenteditable>
+> "==" != "="
+              </code></pre>
+           </section>
+         </section>
+        <section >
+          <!-- TODO: perhaps I need a features section -->
+          <h3 style="position: relative;">nil nothing and falsey</h3>
+          <section >
+          </section>
+          <section>
+            <pre ><code class="ruby"  data-trim contenteditable>
+> nil != 0
+> nil != ""
+> nil != false
+            </code></pre>
+          </section>
+           <section>
+              <pre ><code class="ruby"  data-trim contenteditable>
+> puts "yep" if true
+> puts "yep" if false
+> puts "yep" if nil
+> puts "yep" if 0
+              </code></pre>
+           </section>
+         </section>
+
+        <section >
+          <!-- TODO: perhaps I need a features section -->
+          <h3 style="position: relative;">classes</h3>
+          <section >
+          </section>
+          <section>
+            <pre ><code class="ruby"  data-trim contenteditable>
+> class StringFormatter
+ def initialize(animal)
+   @animal = animal
+ end
+
+ def puts(string)
+   puts "#{string} said the #{@animal}"
+ end
+end
+
+> cat_formatter = StringFormatter.new "cat"
+> cat_formatter.puts "I'm a cat yall"
+            </code></pre>
+          </section>
+          <section>
+            woops I for got a method
+          </section>
+         <section>
+           thats fine just reopen the class
+            <pre ><code class="ruby"  data-trim contenteditable>
+> class StringFormatter
+
+  def sound
+    if @animal == "cat"
+      "meow"
+    else
+     "what dose the #{@animal} say"
+    end
+  end
+end
+
+> cat_formatter = StringFormatter.new "cat"
+> cat_formatter.puts "I'm a cat yall"
+> cat_formatter.sound
+            </code></pre>
+         </section>
+       </section>
+
+         <section>
+          now for the fun stuff
+         </section>
+
+        <section >
+          <h3 style="position: relative;">make a guess the number game</h3>
+          <section >
+          </section>
+          <section>
+            <pre ><code class="ruby"  data-trim contenteditable>
+def guess_the_num
+  num = rand(100)
+
+  5.times do
+    print "make a guess: "
+    guess = gets.chomp.to_i
+    if num == guess
+      puts "you win"
+      return
+    elsif num > guess
+      puts "your guess was to low"
+    elsif num < guess
+      puts "your guess was to high"
+    end
+  end
+  puts "you lose"
+end
+           </code></pre>
+          </section>
+          <section >
+            now make it so that you can set the range and the number of guesses
+          </section>
+         </section>
+
+         <section >
+          <h3 style="position: relative;">reimplemented each</h3>
+          <section >
+          </section>
+          <section>
+            <pre ><code class="ruby"  data-trim contenteditable>
+> class Array
+  def my_each
+   i = 0
+   until i = size
+     yeild self[i]
+     i += 1
+   end
+   self
+  end
+end
+            </code></pre>
+          </section>
+          <section >
+            make you each also present the index to the block
+          </section>
+         </section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
